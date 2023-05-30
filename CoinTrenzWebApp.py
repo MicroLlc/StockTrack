@@ -26,7 +26,22 @@ def get_crypto_price(crypto_id):
     return None
 
 def get_crypto_volume(crypto_id):
-    # Implementation same as before...
+    """
+    Fetches the daily trading volume of a cryptocurrency from Coingecko API.
+    Returns the daily trading volume as a float.
+    """
+    url = f'{COINGECKO_API_URL}/coins/{crypto_id}/market_chart?vs_currency=usd&days=1'
+    response = requests.get(url)
+    data = response.json()
+
+    if 'total_volumes' in data:
+        volumes = data['total_volumes']
+        if len(volumes) > 0:
+            # Get the most recent trading volume
+            volume = volumes[-1][1]
+            return float(volume)
+
+    return None
 
 @celery.task
 def determine_buy_alerts():
