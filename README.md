@@ -1,2 +1,2 @@
-# StockTrack
-Polygon.io implementation Start
+# StockTrack and CoinTrenz
+Polygon.io implementation Start (stock) / Coingecko (crypto)
